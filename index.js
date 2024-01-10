@@ -21,5 +21,5 @@ app.get("/", function (request, response) {
 
 app.use("/api/image", ImageRoutes);
 app.use("/api/clientdata", ClientRoutes);
-
+app.use(express.static('upload'));
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));

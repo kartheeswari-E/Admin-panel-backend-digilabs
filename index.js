@@ -21,5 +21,5 @@ app.get("/", function (request, response) {
 
 app.use("/api/image", ImageRoutes);
 app.use("/api/clientdata", ClientRoutes);
-app.use("uploads",express.static('uploads'));
+app.use("src/Component/uploads",express.static('https://master--enchanting-mochi-38cc25.netlify.app/src/Component/uploads'));
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));

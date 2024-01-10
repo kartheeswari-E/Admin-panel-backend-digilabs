@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
 
   try {
    
-     const path = `Admin-panel/uploads`;
+     const path = `uploads`;
       console.log(path);
       let upload = await new Image({ ...imagedata, destination: path }).save();
       res.status(201).send({ message: "image upload successfully" });

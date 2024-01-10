@@ -12,12 +12,7 @@ db();
 const app = express();
 app.use(bodyParser.urlencoded({limit:'30mb',extended:true}));
 app.use(bodyParser.json({limit:'30mb',extended:true}));
-const corsOptions ={
-  origin:'*', 
-  credentials:true,            
-  optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
+app.use(cors());
 const PORT = 5002;
 
 app.get("/", function (request, response) {

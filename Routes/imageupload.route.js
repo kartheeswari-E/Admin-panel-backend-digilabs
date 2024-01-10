@@ -6,7 +6,7 @@ import fs from "fs";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      const path = `uploads`;
+      const path = `https://lastapp-ih15.onrender.com/uploads`;
   
       if (!fs.existsSync(path)) {
         fs.mkdirSync(path, { recursive: true });
@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
 
   try {
    
-     const path = `uploads`;
+     const path = `https://lastapp-ih15.onrender.com/uploads`;
       console.log(path);
       let upload = await new Image({ ...imagedata, destination: path }).save();
       res.status(201).send({ message: "image upload successfully" });

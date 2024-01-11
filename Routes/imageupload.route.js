@@ -70,6 +70,23 @@ const storage = multer.diskStorage({
     }
   });
 
+  router.put('/buttontext/:id', async (req, res) => {
+    const {buttontext} = req.body;
+    console.log(buttontext);
+    try {
+  
+        let data = await Logo.findByIdAndUpdate({_id: req.params.id},
+            { $set: { buttontext: buttontext } }
+        );
+        res.status(200).send({
+            message: "success"
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error"
+        })
+    }
+  });
 
   router.get("/webdata", async (req, res) => {
     try {

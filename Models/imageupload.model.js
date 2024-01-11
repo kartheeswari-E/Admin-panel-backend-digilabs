@@ -2,15 +2,18 @@ import mongoose from "mongoose";
 const ImageSchema = new mongoose.Schema(
   {
     image: {
-      type: Object,
+      type: String,
     },
-    
+    buttontext: {
+        type: String,
+      },
   },
   {
     timestamps: true,
+   
   }
 );
 
-const Image = mongoose.model("IMAGES", ImageSchema);
+const Logo = mongoose.model("LOGO", ImageSchema);
 
-export default Image;
+export default Logo;

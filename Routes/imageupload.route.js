@@ -1,9 +1,10 @@
 import express from "express";
 const router = express.Router();
-import Image from "../Models/imageupload.model.js";
+import Logo from "../Models/imageupload.model.js";
 import multer from "multer";
 import fs from "fs";
 
+import mongodb from "mongodb"
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       const path ="uploads";
@@ -11,7 +12,7 @@ const storage = multer.diskStorage({
       if (!fs.existsSync(path)) {
         fs.mkdirSync(path, { recursive: true });
       }
-      cb(null, path);
+      return cb(null, path);
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname);
@@ -49,4 +50,46 @@ const storage = multer.diskStorage({
       res.status(500).send({ message: "Internal Server Error", error });
     }
   });
+
+
+  router.put('/newlogo/:id', async (req, res) => {
+    const {base64} = req.body;
+   console.log(req.params.id);
+    try {
+  
+        let data = await Logo.findByIdAndUpdate({_id: req.params.id},
+            { $set: { image: base64 } }
+        );
+        res.status(200).send({
+            message: "success"
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: "Internal Server Error"
+        })
+    }
+  });
+
+
+  router.get("/webdata", async (req, res) => {
+    try {
+        await Logo.find({}).then((data) => {
+            res.status(200).send(data);
+          });
+        } catch (error) {
+          console.log(error);
+          res.status(500).send({ message: "Internal Server Error", error });
+        }
+});
+
+
+
+
+
+
+
+
+
+
+
   export default router;
